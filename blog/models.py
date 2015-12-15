@@ -10,9 +10,11 @@ class Person(models.Model):
         return u'%s' % (self.username)
 
 class Article(models.Model):
-    title = models.CharField(max_length = 36)
+    title = models.CharField(max_length = 100)
     publishtime = models.DateTimeField(auto_now_add = True)
-    person = models.ForeignKey(Person)
+    usernameid = models.CharField(max_length = 20)
+    author = models.CharField(max_length = 50)
+    body = models.TextField()
 
     def __unicode__(self):
         return u'%s' % (self.title)

@@ -19,5 +19,7 @@ urlpatterns = patterns('',
     url(r'^blog/$','blog.views.submit'),
     url(r'^register/$','blog.views.register'),
     url(r'^blog/about/$','blog.views.about'),
-    url(r'^blog/contact/$','blog.views.contact'),
+    url(r'^logout/$', 'blog.views.logout'),
+    url(r'^blog/add/$','blog.views.add'),
+    url(r'^blog/article/$','blog.views.article'),
 )

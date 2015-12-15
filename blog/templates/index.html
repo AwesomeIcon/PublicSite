@@ -1,10 +1,4 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
     {% load staticfiles %}
@@ -57,12 +51,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				   <ul>
 						<li class="active"><a href="javascript:;">HOME</a></li>
 						<li><a href="/blog/about/">ABOUT</a></li>
-						<li><a href="/blog/contact/">CONTACT</a></li>
+						<li><a href="/blog/add/">ADD</a></li>
+                       <li><a href="javascript:;">{{ username }}</a></li>
+                       <li><a href="/logout/">LOGOUT</a></li>
 						<div class="clearfix"> </div>
 				 </ul>
 			 </div>
 			 <div class="clearfix"></div>
-					<script>
+					<script type="text/javascript">
 					$("span.menu").click(function(){
 					$(".top-menu ul").slideToggle("slow" , function(){
 					});
@@ -76,31 +72,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 <div class="container">
 		 <div class="content-grids">
 			 <div class="col-md-8 content-main">
-				 <div class="content-grid">					 
+				 <div class="content-grid">
+                     {% for article in articles %}
 					 <div class="content-grid-info">
 						 <img src="{% static 'img/post1.jpg' %}" alt=""/>
 						 <div class="post-info">
-						 <h4><a href="single.html">Lorem ipsum dolor sit amet</a>  July 30, 2014 / 27 Comments</h4>
-						 <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis.</p>
+						 <h4><a href="single.html">{{ article.title|capfirst }}</a>  {{ article.publishtime|date:"l,F jS" }}</h4>
+						 <p>{{ article.body|truncatewords:"30" }}</p>
 						 <a href="single.html"><span></span>READ MORE</a>
 						 </div>
 					 </div>
-					 <div class="content-grid-info">
-						 <img src="{% static 'img/post2.jpg' %}" alt=""/>
-						 <div class="post-info">
-						 <h4><a href="single.html">Lorem ipsum dolor sit amet</a>  July 30, 2014 / 27 Comments</h4>
-						 <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis.</p>
-						 <a href="single.html"><span></span>READ MORE</a>
-						 </div>
-					 </div>
-					 <div class="content-grid-info">
-						 <img src="{% static 'img/post3.jpg' %}" alt=""/>
-						 <div class="post-info">
-						 <h4><a href="single.html">Lorem ipsum dolor sit amet</a>  July 30, 2014 / 27 Comments</h4>
-						 <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis.</p>
-						 <a href="single.html"><span></span>READ MORE</a>
-						 </div>
-					 </div>
+                     {% endfor %}
+{#					 <div class="content-grid-info">#}
+{#						 <img src="{% static 'img/post2.jpg' %}" alt=""/>#}
+{#						 <div class="post-info">#}
+{#						 <h4><a href="single.html">Lorem ipsum dolor sit amet</a>  July 30, 2014 / 27 Comments</h4>#}
+{#						 <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis.</p>#}
+{#						 <a href="single.html"><span></span>READ MORE</a>#}
+{#						 </div>#}
+{#					 </div>#}
+{#					 <div class="content-grid-info">#}
+{#						 <img src="{% static 'img/post3.jpg' %}" alt=""/>#}
+{#						 <div class="post-info">#}
+{#						 <h4><a href="single.html">Lorem ipsum dolor sit amet</a>  July 30, 2014 / 27 Comments</h4>#}
+{#						 <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis.</p>#}
+{#						 <a href="single.html"><span></span>READ MORE</a>#}
+{#						 </div>#}
+{#					 </div>#}
 					 
 				 </div>
 			  </div>
@@ -153,5 +151,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 <p>Copyrights © 2015 Blog All rights reserved | By Mr.Huang</p>
 	 </div>
 </div>
+</body>
+</html>
 
 	
