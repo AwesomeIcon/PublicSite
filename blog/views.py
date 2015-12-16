@@ -60,9 +60,9 @@ def add(request):
         return HttpResponse(r'<html><script type="text/javascript">alert("Login again!"); window.location="/"</script></html>')
 
 def article(request):
-    title = request.POST['title']
-    author = request.POST['author']
-    body = request.POST['body']
+    title = request.POST['title'].encode('utf-8')
+    author = request.POST['author'].encode('utf-8')
+    body = request.POST['body'].encode('utf-8')
     usernameid = request.session['person_id']
     art = Article(title=title,author=author,body=body,usernameid=usernameid)
     art.save()
@@ -71,3 +71,12 @@ def article(request):
 def logout(request):
     del request.session['person_id']
     return render_to_response('login.html')
+
+def single(request,num):
+    if request.session['person_id']:
+        perid = request.session['person_id']
+        username = Person.objects.get(id=perid).username
+        body = Article.objects.get(id=num).body
+        return render_to_response('single.html',{'username':username,'body':body})
+    else:
+        return HttpResponse(r'<html><script type="text/javascript">alert("Login again!"); window.location="/"</script></html>')

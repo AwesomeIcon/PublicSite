@@ -22,4 +22,5 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'blog.views.logout'),
     url(r'^blog/add/$','blog.views.add'),
     url(r'^blog/article/$','blog.views.article'),
+    url(r'^blog/single/(?P<num>\d+)/$','blog.views.single'),
 )

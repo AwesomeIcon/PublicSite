@@ -78,8 +78,8 @@
 						 <img src="{% static 'img/post1.jpg' %}" alt=""/>
 						 <div class="post-info">
 						 <h4><a href="single.html">{{ article.title|capfirst }}</a>  {{ article.publishtime|date:"l,F jS" }}</h4>
-						 <p>{{ article.body|truncatewords:"30" }}</p>
-						 <a href="single.html"><span></span>READ MORE</a>
+						 <p>{{ article.body|slice:"60" }}...</p>
+						 <a href="javascript:;" value="{{ article.id }}" class="readmore"><span></span>READ MORE</a>
 						 </div>
 					 </div>
                      {% endfor %}
@@ -151,6 +151,11 @@
 	 <p>Copyrights © 2015 Blog All rights reserved | By Mr.Huang</p>
 	 </div>
 </div>
+<script type="text/javascript">
+    $(".readmore").click(function(){
+        window.location.href = '/blog/single/'+$(this).attr("value")+'/';
+    })
+</script>
 </body>
 </html>
 
