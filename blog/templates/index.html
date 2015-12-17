@@ -42,14 +42,14 @@
 			 <!---start-top-nav---->
 			 <div class="top-menu">
 				 <div class="search">
-					 <form>
-					 <input type="text" placeholder="" required="">
+					 <form action="/blog/consult/" method="post">
+					 <input type="text" placeholder="Text Title..." required="" name="title">
 					 <input type="submit" value=""/>
 					 </form>
 				 </div>
 				  <span class="menu"> </span> 
 				   <ul>
-						<li class="active"><a href="javascript:;">HOME</a></li>
+						<li class="active"><a href="/blog/">HOME</a></li>
 						<li><a href="/blog/about/">ABOUT</a></li>
 						<li><a href="/blog/add/">ADD</a></li>
                        <li><a href="javascript:;">{{ username }}</a></li>

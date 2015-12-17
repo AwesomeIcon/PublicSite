@@ -51,7 +51,8 @@
 				   <ul>
 						<li class="active"><a href="/blog/">HOME</a></li>
 						<li><a href="about.html">ABOUT</a></li>	
-						<li><a href="add.html">CONTACT</a></li>
+						<li><a href="/blog/toedit/{{ num }}">EDIT</a></li>
+                       <li><a href="javascript:;" class="deleteme" value="{{ num }}">DELETE</a></li>
                        <li><a href="/logout/">LOGOUT</a></li>
 						<div class="clearfix"> </div>
 				 </ul>
@@ -144,6 +145,21 @@
 	 <p>Copyrights © 2015 Blog All rights reserved | By Mr.Huang</p>
 	 </div>
 </div>
+<script type="text/javascript">
+    $(".deleteme").click(function(){
+        $.ajax({
+            type:"POST",
+            url:"/blog/delete/",
+            data:"value="+$(this).attr("value"),
+            success:function(){
+                window.location.href = '/blog/';
+            },
+            error:function(){
+                alert("删除失败！请稍后再试");
+            }
+        })
+    })
+</script>
 </body>
 </html>
 

@@ -23,4 +23,8 @@ urlpatterns = patterns('',
     url(r'^blog/add/$','blog.views.add'),
     url(r'^blog/article/$','blog.views.article'),
     url(r'^blog/single/(?P<num>\d+)/$','blog.views.single'),
+    url(r'^blog/delete/$','blog.views.delete'),
+    url(r'^blog/toedit/(?P<num>\d+)/$','blog.views.toedit'),
+    url(r'^blog/edit/(?P<num>\d+)/$','blog.views.edit'),
+    url(r'^blog/consult/$','blog.views.consult'),
 )
