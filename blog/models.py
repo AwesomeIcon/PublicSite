@@ -18,3 +18,6 @@ class Article(models.Model):
 
     def __unicode__(self):
         return u'%s' % (self.title)
+
+    class Meta:
+        ordering = ['-publishtime']

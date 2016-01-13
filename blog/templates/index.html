@@ -83,22 +83,6 @@
 						 </div>
 					 </div>
                      {% endfor %}
-{#					 <div class="content-grid-info">#}
-{#						 <img src="{% static 'img/post2.jpg' %}" alt=""/>#}
-{#						 <div class="post-info">#}
-{#						 <h4><a href="single.html">Lorem ipsum dolor sit amet</a>  July 30, 2014 / 27 Comments</h4>#}
-{#						 <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis.</p>#}
-{#						 <a href="single.html"><span></span>READ MORE</a>#}
-{#						 </div>#}
-{#					 </div>#}
-{#					 <div class="content-grid-info">#}
-{#						 <img src="{% static 'img/post3.jpg' %}" alt=""/>#}
-{#						 <div class="post-info">#}
-{#						 <h4><a href="single.html">Lorem ipsum dolor sit amet</a>  July 30, 2014 / 27 Comments</h4>#}
-{#						 <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis.</p>#}
-{#						 <a href="single.html"><span></span>READ MORE</a>#}
-{#						 </div>#}
-{#					 </div>#}
 					 
 				 </div>
 			  </div>
@@ -106,10 +90,9 @@
 				 <div class="recent">
 					 <h3>RECENT POSTS</h3>
 					 <ul>
-					 <li><a href="#">Aliquam tincidunt mauris</a></li>
-					 <li><a href="#">Vestibulum auctor dapibus  lipsum</a></li>
-					 <li><a href="#">Nunc dignissim risus consecu</a></li>
-					 <li><a href="#">Cras ornare tristiqu</a></li>
+                         {% for article in articles|slice:"3" %}
+					 <li><a href="#">{{ article.title }}</a></li>
+                         {% endfor %}
 					 </ul>
 				 </div>
 				 <div class="comments">

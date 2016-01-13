@@ -112,6 +112,7 @@ def edit(request,num):
     else:
         return HttpResponse(r'<html><script type="text/javascript">alert("Login again!"); window.location="/"</script></html>')
 
+
 def consult(request):
     if request.session['person_id']:
         perid = request.session['person_id']
