@@ -8,23 +8,60 @@ def index(request):
     c = Context({})
     return HttpResponse(t.render(c))
 '''
-
+import Image, ImageDraw, ImageFont, ImageFilter
+import random
 from django.shortcuts import render_to_response
 from django.http import HttpResponse,HttpResponseRedirect
 from blog.models import Person,Article
 
-def login(request):
+def rndChar():
+    return chr(random.randint(65, 90))
+
+def rndColor():
+    return (random.randint(64, 255), random.randint(64, 255), random.randint(64, 255))
+
+def rndColor2():
+    return (random.randint(32, 127), random.randint(32, 127), random.randint(32, 127))
+
+def drawPIL():
+    width =  30 * 4
+    height = 44
+    image = Image.new('RGB', (width, height), (255, 255, 255))
+    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeSans.ttf', 36)
+    draw = ImageDraw.Draw(image)
+    for x in range(width):
+        for y in range(height):
+            draw.point((x, y), fill=rndColor())
+    a = ""
+    for t in range(4):
+        b = rndChar()
+        a += b
+        draw.text((30 * t +5, 5), b, font=font, fill=rndColor2())
+    image = image.filter(ImageFilter.BLUR)
+    image.save('/home/developer/Github/PublicSite/blog/static/img/validation.png', 'png');
+    return a
+
+def login(request,validated = "Null"):
     try:
         username = request.POST['username']
         password = request.POST['password']
-        person = Person(username=username,password=password)
-        person.save()
-        return render_to_response('login.html')
+        validation = request.POST['validation']
+        print "mytype:%s"%validation
+        print validated
+        if validation == validated:
+            person = Person(username=username,password=password)
+            person.save()
+            return render_to_response('login.html')
+        else:
+            return HttpResponseRedirect('/register/')
     except:
         return render_to_response('login.html')
 
 def register(request):
-    return render_to_response('register.html')
+    validated = drawPIL()
+    print "PIL:%s"%validated
+    validatedurl = '/login/'+validated+'/'
+    return render_to_response('register.html',{'validatedurl':validatedurl})
 
 def submit(request):
     try:
