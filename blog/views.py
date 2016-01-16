@@ -41,14 +41,17 @@ def drawPIL():
     image.save('/home/developer/Github/PublicSite/blog/static/img/validation.png', 'png');
     return a
 
-def login(request,validated = "Null"):
+VALIDATE = ""
+
+def login(request):
     try:
         username = request.POST['username']
         password = request.POST['password']
         validation = request.POST['validation']
-        print "mytype:%s"%validation
-        print validated
-        if validation == validated:
+        global VALIDATE
+        # print "mytype:%s"%validation
+        # print VALIDATE
+        if validation == VALIDATE:
             person = Person(username=username,password=password)
             person.save()
             return render_to_response('login.html')
@@ -58,10 +61,10 @@ def login(request,validated = "Null"):
         return render_to_response('login.html')
 
 def register(request):
-    validated = drawPIL()
-    print "PIL:%s"%validated
-    validatedurl = '/login/'+validated+'/'
-    return render_to_response('register.html',{'validatedurl':validatedurl})
+    global VALIDATE #global variable
+    VALIDATE = drawPIL()
+    # print "PIL:%s"%VALIDATE
+    return render_to_response('register.html')
 
 def submit(request):
     try:
