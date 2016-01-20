@@ -52,7 +52,8 @@
 						<li><a href="/blog/">HOME</a></li>
 						<li><a href="/blog/about/">ABOUT</a></li>
 						<li><a href="javascript:;">ADD</a></li>
-                       <li><a href="/logout/">LOGOUT</a></li>
+				<li><a href="javascript:;" style="position: absolute;top: 10px;right: 80px;">{{ username }}</a></li>
+                       <li><a href="/logout/" style="position: absolute;top: 10px;right: 10px;">LOGOUT</a></li>
 						<div class="clearfix"> </div>
 				 </ul>
 			 </div>
@@ -73,10 +74,11 @@
 			 <h2>Edit Article</h2>
 		     </div>
 			 <div class="contact-details">				 
-			 <form action="/blog/edit/{{ num }}/" method="post">
+			 <form action="/blog/edit/{{ num }}/" method="post" enctype="multipart/form-data">
 				 <input type="text" required name="title" value="{{ title }}"/>
 				 <input type="text" value="{{ author }}" required name="author"/>
 				 <textarea name="body" required>{{ body }}</textarea>
+				 <input type="file" name="upload" style="margin-bottom: 20px;" value="{{ headImg }}">
 				 <input type="submit" value="SAVE"/>
 			 </form>
 		  </div>

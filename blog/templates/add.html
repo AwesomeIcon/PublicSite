@@ -52,7 +52,8 @@
 						<li><a href="/blog/">HOME</a></li>
 						<li><a href="/blog/about/">ABOUT</a></li>
 						<li class="active"><a href="javascript:;">ADD</a></li>
-                       <li><a href="/logout/">LOGOUT</a></li>
+                       <li><a href="javascript:;" style="position: absolute;top: 10px;right: 80px;">{{ username }}</a></li>
+                       <li><a href="/logout/" style="position: absolute;top: 10px;right: 10px;">LOGOUT</a></li>
 						<div class="clearfix"> </div>
 				 </ul>
 			 </div>
@@ -74,10 +75,11 @@
 			 <p>Write as you like! && Do what you want!</p>
 		     </div>
 			 <div class="contact-details">				 
-			 <form action="/blog/article/" method="post">
+			 <form action="/blog/article/" method="post" enctype="multipart/form-data">
 				 <input type="text" placeholder="Title" required name="title"/>
 				 <input type="text" placeholder="Author" required name="author"/>
 				 <textarea placeholder="Text here..." name="body" required></textarea>
+				 <input type="file" name="upload" style="margin-bottom: 20px;">
 				 <input type="submit" value="SAVE"/>
 			 </form>
 		  </div>

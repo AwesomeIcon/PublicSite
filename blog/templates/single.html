@@ -53,7 +53,8 @@
 						<li><a href="about.html">ABOUT</a></li>	
 						<li><a href="/blog/toedit/{{ num }}">EDIT</a></li>
                        <li><a href="javascript:;" class="deleteme" value="{{ num }}">DELETE</a></li>
-                       <li><a href="/logout/">LOGOUT</a></li>
+		<li><a href="javascript:;" style="position: absolute;top: 10px;right: 80px;">{{ username }}</a></li>
+                       <li><a href="/logout/" style="position: absolute;top: 10px;right: 10px;">LOGOUT</a></li>
 						<div class="clearfix"> </div>
 				 </ul>
 			 </div>
@@ -72,7 +73,7 @@
 	 <div class="container">
 		  <div class="col-md-8 single-main">				 
 			  <div class="single-grid">
-					<img src="{% static 'img/post1.jpg' %}" alt=""/>
+					<img src="/static/img/{{ headImg }}" alt="" style="width:100%;" />
 					<p>{{ body }}</p>
 			  </div>
 			 <ul class="comment-list">

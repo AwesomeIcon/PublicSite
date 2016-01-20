@@ -15,6 +15,7 @@ class Article(models.Model):
     usernameid = models.CharField(max_length = 20)
     author = models.CharField(max_length = 50)
     body = models.TextField()
+    headImg = models.TextField()
 
     def __unicode__(self):
         return u'%s' % (self.title)

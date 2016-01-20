@@ -104,9 +104,20 @@ def article(request):
     author = request.POST['author']
     body = request.POST['body']
     usernameid = request.session['person_id']
-    art = Article(title=title,author=author,body=body,usernameid=usernameid)
+    headImg = request.FILES['upload']
+    uploadedfile(headImg)
+    art = Article(title=title,author=author,body=body,usernameid=usernameid,headImg=headImg)
     art.save()
     return HttpResponseRedirect('/blog/')
+
+
+def uploadedfile(f):
+    path = '/home/developer/Github/PublicSite/blog/static/img/'+f.name 
+    destination = open(path,'wb+')
+    for chunk in f.chunks():
+        destination.write(chunk)
+    destination.close()
+
 
 def logout(request):
     del request.session['person_id']
@@ -117,7 +128,8 @@ def single(request,num):
         perid = request.session['person_id']
         username = Person.objects.get(id=perid).username
         body = Article.objects.get(id=num).body
-        return render_to_response('single.html',{'username':username,'body':body,'num':num})
+        headImg = Article.objects.get(id=num).headImg
+        return render_to_response('single.html',{'username':username,'body':body,'num':num,'headImg':headImg})
     else:
         return HttpResponse(r'<html><script type="text/javascript">alert("Login again!"); window.location="/"</script></html>')
 
@@ -138,7 +150,8 @@ def toedit(request,num):
         title = getarticle.title
         author = getarticle.author
         body = getarticle.body
-        return render_to_response('edit.html',{'num':num,'title':title,'author':author,'body':body})
+        upload = getarticle.headImg
+        return render_to_response('edit.html',{'num':num,'title':title,'author':author,'body':body,'upload':upload})
 
 
 def edit(request,num):
@@ -147,6 +160,7 @@ def edit(request,num):
         updatearticle.title = request.POST['title']
         updatearticle.author = request.POST['author']
         updatearticle.body = request.POST['body']
+        updatearticle.headImg = uploadedfile(request.FILES['upload'])
         updatearticle.save()
         return HttpResponseRedirect('/blog/')
     else:

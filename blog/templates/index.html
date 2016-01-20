@@ -52,8 +52,8 @@
 						<li class="active"><a href="/blog/">HOME</a></li>
 						<li><a href="/blog/about/">ABOUT</a></li>
 						<li><a href="/blog/add/">ADD</a></li>
-                       <li><a href="javascript:;">{{ username }}</a></li>
-                       <li><a href="/logout/">LOGOUT</a></li>
+                       <li><a href="javascript:;" style="position: absolute;top: 10px;right: 80px;">{{ username }}</a></li>
+                       <li><a href="/logout/" style="position: absolute;top: 10px;right: 10px;">LOGOUT</a></li>
 						<div class="clearfix"> </div>
 				 </ul>
 			 </div>
@@ -75,7 +75,7 @@
 				 <div class="content-grid">
                      {% for article in articles %}
 					 <div class="content-grid-info">
-						 <img src="{% static 'img/post1.jpg' %}" alt=""/>
+						 <img src="/static/img/{{ article.headImg }}" alt="" style="width:100%;">
 						 <div class="post-info">
 						 <h4><a href="single.html">{{ article.title|capfirst }}</a>  {{ article.publishtime|date:"l,F jS" }}</h4>
 						 <p>{{ article.body|slice:"60" }}...</p>
