@@ -160,7 +160,9 @@ def edit(request,num):
         updatearticle.title = request.POST['title']
         updatearticle.author = request.POST['author']
         updatearticle.body = request.POST['body']
-        updatearticle.headImg = uploadedfile(request.FILES['upload'])
+        if request.FILES['upload']:
+            updatearticle.headImg = request.FILES['upload']
+            uploadedfile(updatearticle.headImg)
         updatearticle.save()
         return HttpResponseRedirect('/blog/')
     else:

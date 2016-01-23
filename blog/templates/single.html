@@ -74,7 +74,9 @@
 		  <div class="col-md-8 single-main">				 
 			  <div class="single-grid">
 					<img src="/static/img/{{ headImg }}" alt="" style="width:100%;" />
-					<p>{{ body }}</p>
+					<p>{% autoescape off %}
+					{{ body }}
+					{% endautoescape %}</p>
 			  </div>
 			 <ul class="comment-list">
 		  		   <h5 class="post-author_head">Written by <a href="#" title="Posts by admin" rel="author">{{ username }}</a></h5>

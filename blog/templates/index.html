@@ -78,7 +78,9 @@
 						 <img src="/static/img/{{ article.headImg }}" alt="" style="width:100%;">
 						 <div class="post-info">
 						 <h4><a href="single.html">{{ article.title|capfirst }}</a>  {{ article.publishtime|date:"l,F jS" }}</h4>
-						 <p>{{ article.body|slice:"60" }}...</p>
+						 <p>{% autoescape off %}
+						 {{ article.body|slice:"60"|add:"..." }}
+						 {% endautoescape %}</p>
 						 <a href="javascript:;" value="{{ article.id }}" class="readmore"><span></span>READ MORE</a>
 						 </div>
 					 </div>

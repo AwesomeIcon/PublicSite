@@ -11,6 +11,7 @@
 	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"
 	/>
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<script type="text/javascript" src="{% static 'ckeditor/ckeditor.js' %}"></script>
 	<!----webfonts---->
 		<link href="{% static 'css/fonts.css' %}" rel='stylesheet' type='text/css'>
 		<link href="{% static 'css/fonts2.css' %}" rel='stylesheet' type='text/css'>
@@ -79,7 +80,7 @@
 				 <input type="text" placeholder="Title" required name="title"/>
 				 <input type="text" placeholder="Author" required name="author"/>
 				 <textarea placeholder="Text here..." name="body" required></textarea>
-				 <input type="file" name="upload" style="margin-bottom: 20px;">
+				 <input type="file" name="upload" style="margin: 20px 0;">
 				 <input type="submit" value="SAVE"/>
 			 </form>
 		  </div>
@@ -92,6 +93,7 @@
 	 </div>
 </div>
 </body>
+<script type="text/javascript">CKEDITOR.replace('body');</script>
 </html>
 
 	
