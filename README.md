@@ -36,11 +36,9 @@ pip install python-mysql
 
 * [django book 2.0中文版](http://docs.30c.org/djangobook2/)
 
-* [www.baidu.com](www.baidu.com)
-
 * [Stackoverflow](http://stackoverflow.com/) 
 
-* [有条件的还可以谷歌一下](www.google.com)
+* 外事不决问谷歌，内事不决问度娘
 
 
 
