@@ -43,6 +43,10 @@ def drawPIL():
 
 VALIDATE = ""
 
+def list(request):
+    articles = Article.objects.all()
+    return render_to_response('list.html',{'articles':articles})
+
 def login(request):
     try:
         username = request.POST['username']
@@ -121,17 +125,17 @@ def uploadedfile(f):
 
 def logout(request):
     del request.session['person_id']
-    return render_to_response('login.html')
+    return HttpResponseRedirect('/')
 
 def single(request,num):
-    if request.session['person_id']:
+    username = Article.objects.get(id=num).author
+    body = Article.objects.get(id=num).body
+    headImg = Article.objects.get(id=num).headImg
+    try:
         perid = request.session['person_id']
-        username = Person.objects.get(id=perid).username
-        body = Article.objects.get(id=num).body
-        headImg = Article.objects.get(id=num).headImg
         return render_to_response('single.html',{'username':username,'body':body,'num':num,'headImg':headImg})
-    else:
-        return HttpResponse(r'<html><script type="text/javascript">alert("Login again!"); window.location="/"</script></html>')
+    except:
+        return render_to_response('u_single.html',{'username':username,'body':body,'num':num,'headImg':headImg})
 
 def delete(request):
     if request.session['person_id']:

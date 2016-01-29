@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+	<title>Personal Blog</title>
+	<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+	<link href="{% static 'css/styleblog.css' %}" rel='stylesheet' type='text/css' />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Personal Blog Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" 
+	/>
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!----webfonts---->
+		<link href="{% static 'css/fonts.css' %}" rel='stylesheet' type='text/css'>
+		<link href="{% static 'css/fonts2.css' %}" rel='stylesheet' type='text/css'>
+		<!----//webfonts---->
+		  <script src="{% static 'js/jquery.min.js' %}"></script>
+		<!--end slider -->
+		<!--script-->
+<script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+<!--/script-->
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+				});
+			});
+</script>
+<!---->
+
+</head>
+<body>
+<!---header---->			
+<div class="header">  
+	 <div class="container">
+		  <div class="logo">
+			  <a href="javascript:;"><img src="{% static 'img/logo.jpg' %}" title="" /></a>
+		  </div>
+			 <!---start-top-nav---->
+			 <div class="top-menu">
+				 <div class="search">
+					 <form action="/blog/consult/" method="post">
+					 <input type="text" placeholder="Text Here..." required="" name="title">
+					 <input type="submit" value=""/>
+					 </form>
+				 </div>
+				  <span class="menu"> </span> 
+				   <ul>
+					<li><a href="/login/" style="position: absolute;top: 10px;right: 10px;">LOGIN</a></li>
+						<div class="clearfix"> </div>
+				 </ul>
+			 </div>
+			 <div class="clearfix"></div>
+					<script type="text/javascript">
+					$("span.menu").click(function(){
+					$(".top-menu ul").slideToggle("slow" , function(){
+					});
+					});
+					</script>
+				<!---//End-top-nav---->					
+	 </div>
+</div>
+<!--/header-->
+<div class="content">
+	 <div class="container">
+		 <div class="content-grids">
+			 <div class="col-md-8 content-main">
+				 <div class="content-grid">
+                     {% for article in articles %}
+					 <div class="content-grid-info">
+						 <img src="/static/img/{{ article.headImg }}" alt="" style="width:100%;">
+						 <div class="post-info">
+						 <h4><a href="single.html">{{ article.title|capfirst }}</a>  {{ article.publishtime|date:"l,F jS" }}</h4>
+						 <p>{% autoescape off %}
+						 {{ article.body|slice:"60"|add:"..." }}
+						 {% endautoescape %}</p>
+						 <a href="javascript:;" value="{{ article.id }}" class="readmore"><span></span>READ MORE</a>
+						 </div>
+					 </div>
+                     {% endfor %}
+					 
+				 </div>
+			  </div>
+			  <div class="col-md-4 content-right">
+				 <div class="recent">
+					 <h3>RECENT POSTS</h3>
+					 <ul>
+                         {% for article in articles|slice:"10" %}
+					 <li><a href="#">{{ article.title }}</a></li>
+                         {% endfor %}
+					 </ul>
+				 </div>
+				 <div class="comments">
+					 <h3>RECENT COMMENTS</h3>
+					 <ul>
+					 <li><a href="#">Amada Doe </a> on <a href="#">Hello World!</a></li>
+					 <li><a href="#">Peter Doe </a> on <a href="#"> Photography</a></li>
+					 <li><a href="#">Steve Roberts  </a> on <a href="#">HTML5/CSS3</a></li>
+					 </ul>
+				 </div>
+				 <div class="clearfix"></div>
+				 <div class="archives">
+					 <h3>ARCHIVES</h3>
+					 <ul>
+					 <li><a href="#">October 2013</a></li>
+					 <li><a href="#">September 2013</a></li>
+					 <li><a href="#">August 2013</a></li>
+					 <li><a href="#">July 2013</a></li>
+					 </ul>
+				 </div>
+				 <div class="categories">
+					 <h3>CATEGORIES</h3>
+					 <ul>
+					 <li><a href="#">Vivamus vestibulum nulla</a></li>
+					 <li><a href="#">Integer vitae libero ac risus e</a></li>
+					 <li><a href="#">Vestibulum commo</a></li>
+					 <li><a href="#">Cras iaculis ultricies</a></li>
+					 </ul>
+				 </div>
+				 <div class="clearfix"></div>
+			  </div>
+			  <div class="clearfix"></div>
+		  </div>
+	  </div>
+</div>
+<!---->
+<div class="footer">
+	 <div class="container">
+	 <p>Copyrights © 2015 Blog All rights reserved | By Mr.Huang</p>
+	 </div>
+</div>
+<script type="text/javascript">
+    $(".readmore").click(function(){
+        window.location.href = '/blog/single/'+$(this).attr("value")+'/';
+    })
+</script>
+</body>
+</html>
+
+	
